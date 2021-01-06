@@ -1,19 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+/* ---------------- Color palette ---------------- */
+
+:root {
+    --palette-white: #D7D7D9;
+    --palette-blue: #024873;
+    --palette-cyan: #608BA6;
+    --palette-orange: #BF7B3F;
+    --palette-red: #8C2F1B;
+    --palette-dark1: #111111;
+    --palette-dark2: #222222;
+    --palette-lightgray: #979799;
+}
+
+
+/* ---------------- Layout ---------------- */
 
 .fullheight {
     height: 100vh;
-    min-height: -webkit-fill-available;
+    /* min-height: -webkit-fill-available; */
 }
 
 .fullwidth {
     width: 100%;
 }
 
+
+/* --------------- Desktop/mobile variants ---------------- */
+
 @media only screen and (max-width: 700px) {
     .desktop.only {
-        visibility: hidden;
+        display: none !important;
     }
-
     .mobile.only {
         visibility: initial;
     }
@@ -23,20 +41,85 @@
     .desktop.only {
         visibility: initial;
     }
-
     .mobile.only {
-        visibility: hidden;
+        display: none !important;
     }
 }
 
-.menu.item, .header, .content, .primary.button, .secondary.button, .button, .f-nunito {
+
+/* ---------------- Fonts ---------------- */
+
+body *,
+.f-nunito {
     font-family: 'Nunito', sans-serif;
 }
 
-body *, .sub.header, .f-mserrat {
-    font-family: 'Montserrat Alternates', sans-serif;
+
+/* ---------------- Custom styles ---------------- */
+
+body {
+    color: var(--palette-white);
+}
+
+p {
+    color: var(--palette-dark1);
+}
+
+.segment {
+    color: var(--palette-dark1);
 }
 
 .darkbg {
-    background-color: #111111 !important;
+    background-color: var(--palette-dark2) !important;
+}
+
+.vantabg {
+    color: var(--palette-white);
+}
+
+.fixed.menu.opaque {
+    -webkit-backdrop-filter: blur(20px) saturate(600%) brightness(30%) contrast(120%);
+    backdrop-filter: blur(20px) saturate(600%) brightness(30%) contrast(120%);
+    background-color: var(--palette-dark1);
+}
+
+.ui.menu {
+    border: none !important;
+}
+
+.grid.footer {
+    background-color: var(--palette-dark2);
+    color: var(--palette-white);
+    padding-top: 12pt;
+}
+
+.footer.column {
+    margin: 0pt;
+}
+
+.footer .column .link.list {
+    padding-top: 36pt;
+    padding-bottom: 36pt;
+}
+
+.footer .final.footer {
+    background-color: var(--palette-dark1);
+    color: var(--palette-lightgray);
+}
+
+.final.footer.mobile.only {
+    padding-top: 12pt;
+    padding-bottom: 20pt;
+}
+
+.footer .column .link.list .item {
+    color: var(--palette-lightgray);
+    font-weight: lighter;
+    padding-bottom: 12pt;
+}
+
+.footer .column .link.list .active.item {
+    color: var(--palette-white);
+    font-weight: bolder;
+    padding-bottom: 24pt;
 }

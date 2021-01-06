@@ -1,0 +1,26 @@
+<!-- Sidebar menu -->
+
+<script type="text/javascript">
+    var loc = window.location.pathname;
+
+    $('.sidebar').find('a').each(function() {
+        if ($(this).attr('href') == loc) {
+            $(this).addClass('active item');
+        }
+    });
+</script>
+
+<div class="ui top inverted vertical menu darkbg sidebar overlay">
+    <a href="/index.html" class="item">
+        Home
+    </a>
+    <a href="/pages/projects/projects.html" class="item">
+        Projects
+    </a>
+    <a href="/pages/news/news.html" class="item">
+        News
+    </a>
+    <a href="/pages/contact.html" class="item">
+        Contact
+    </a>
+</div>
