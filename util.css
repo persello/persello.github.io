@@ -17,12 +17,12 @@
 /* ---------------- Layout ---------------- */
 
 .fullheight {
-    height: 100vh;
+    height: 110vh !important;
     /* min-height: -webkit-fill-available; */
 }
 
 .fullwidth {
-    width: 100%;
+    width: 100vw !important;
 }
 
 
