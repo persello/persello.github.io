@@ -11,6 +11,7 @@
     --palette-dark1: #111111;
     --palette-dark2: #222222;
     --palette-lightgray: #979799;
+    --palette-shadow: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -18,11 +19,13 @@
 
 .fullheight {
     height: 110vh !important;
+    overflow: hidden;
     /* min-height: -webkit-fill-available; */
 }
 
 .fullwidth {
     width: 100vw !important;
+    overflow: hidden;
 }
 
 
@@ -49,9 +52,10 @@
 
 /* ---------------- Fonts ---------------- */
 
-body *,
+.header,
+*:not(i),
 .f-nunito {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
 }
 
 
@@ -78,12 +82,12 @@ p {
 }
 
 .fixed.menu.opaque {
-    -webkit-backdrop-filter: blur(20px) saturate(600%) brightness(30%) contrast(120%);
-    backdrop-filter: blur(20px) saturate(600%) brightness(30%) contrast(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%) brightness(60%);
+    backdrop-filter: blur(20px) saturate(120%) brightness(60%);
     background-color: var(--palette-dark1);
 }
 
-.ui.menu {
+.fixed.menu {
     border: none !important;
 }
 
@@ -122,4 +126,27 @@ p {
     color: var(--palette-white);
     font-weight: bolder;
     padding-bottom: 24pt;
+}
+
+.norminal.presenter {
+    overflow: hidden;
+    background-color: var(--palette-blue);
+    padding: 36pt;
+}
+
+.norminal.iphone.mockup {
+    filter: drop-shadow(0px 0px 6px var(--palette-shadow));
+    float: right;
+    margin-bottom: -150px;
+}
+
+.norminal .ui.header:not(.sub) {
+    font-size: 400% !important;
+    font-weight: 900 !important;
+    color: white;
+    text-shadow: 3px 3px 0px var(--palette-cyan), 3px 3px 24px var(--palette-shadow);
+}
+
+.norminal .ui.button {
+    margin-top: 12pt;
 }
