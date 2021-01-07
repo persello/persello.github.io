@@ -1,0 +1,7 @@
+# Group 1
+User-agent: *
+Disallow: /semantic/
+Disallow: /assets/
+Disallow: /snippets/
+
+Sitemap: http://persello.github.io/sitemap.xml
