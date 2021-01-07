@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://persello.github.io/</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    <url>
+        <loc>https://persello.github.io/pages/contact.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    <url>
+        <loc>https://persello.github.io/pages/projects/projects.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    <url>
+        <loc>https://persello.github.io/pages/projects/dandelion.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+        <url>
+        <loc>https://persello.github.io/pages/projects/norminal.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+        <url>
+        <loc>https://persello.github.io/pages/projects/slowlight.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+        <url>
+        <loc>https://persello.github.io/pages/projects/tractorkit.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+        <url>
+        <loc>https://persello.github.io/news/news.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+</urlset>
