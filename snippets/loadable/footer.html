@@ -38,10 +38,14 @@
                     Privacy policy
                 </a>
         <div class="item ">
-            ©2021 Riccardo Persello
+            ©<span id="year"></span> Riccardo Persello
         </div>
         <div class="item ">
             Made with <a href="https://semantic-ui.com ">Semantic UI</a>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>

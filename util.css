@@ -26,21 +26,25 @@
     }
     /* --------------- Desktop/mobile variants ---------------- */
     
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 768px) {
         .desktop.only {
             display: none !important;
+            height: 0;
+            width: 0;
         }
         .mobile.only {
             visibility: initial;
         }
     }
     
-    @media only screen and (min-width: 701px) {
+    @media only screen and (min-width: 769px) {
         .desktop.only {
             visibility: initial;
         }
         .mobile.only {
             display: none !important;
+            height: 0;
+            width: 0;
         }
     }
     /* ---------------- Fonts ---------------- */
@@ -124,33 +128,40 @@
         background-color: var(--palette-blue);
     }
     
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 768px) {
         .norminal.presenter {
             padding: 20pt;
         }
+        .norminal.iphone.mockup {
+            filter: drop-shadow(0px 0px 6px var(--palette-shadow));
+            margin-bottom: -500px;
+        }
     }
     
-    @media only screen and (min-width: 701px) {
+    @media only screen and (min-width: 769px) {
         .norminal.presenter {
             padding: 36pt;
         }
         .norminal.iphone.mockup {
             float: right;
+            filter: drop-shadow(0px 0px 6px var(--palette-shadow));
+            margin-bottom: -190px;
         }
-    }
-    
-    .norminal.iphone.mockup {
-        filter: drop-shadow(0px 0px 6px var(--palette-shadow));
-        margin-bottom: -150px;
     }
     
     .norminal .ui.header:not(.sub) {
         font-size: 400% !important;
         font-weight: 900 !important;
         color: white;
-        text-shadow: 1px 1px 0px var(--palette-cyan), 2px 2px 1px var(--palette-cyan), 3px 3px 0px var(--palette-cyan), 3px 3px 24px var(--palette-shadow);
+        text-shadow: 0px 0px 0 rgb(239, 239, 239), 1px 1px 0 rgb(222, 222, 222), 2px 2px 0 rgb(206, 206, 206), 3px 3px 0 rgb(189, 189, 189), 4px 4px 0 rgb(173, 173, 173), 5px 5px 4px rgba(0, 0, 0, 0.14), 5px 5px 8px rgba(0, 0, 0, 0.5), 0px 0px 24px rgba(0, 0, 0, .2);
     }
     
     .norminal .ui.button {
         margin-top: 12pt;
+    }
+    
+    .gh {
+        margin-top: 32px;
+        filter: drop-shadow(0px 0px 6px var(--palette-shadow));
+        max-width: 600px;
     }
