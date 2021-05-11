@@ -1,10 +1,11 @@
 import NavBar from '../components/navbar'
 import Layout from '../components/layout'
+import NorminalHero from '../components/norminal'
 
 export default function IndexPage() {
   return (
     <Layout>
-      <h1>Hello index!</h1>
+      <NorminalHero/>
     </Layout>
   )
 }
