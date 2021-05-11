@@ -3,7 +3,7 @@ import NavBarText from './navbartext'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import Measure from 'react-measure'
+// import Measure from 'react-measure'
 
 import Image from 'next/image'
 
