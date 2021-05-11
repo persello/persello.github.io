@@ -1,5 +1,4 @@
 import NavBarButton, { NavBarButtonDestination } from './navbarbutton'
-import NavBarText from './navbartext'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
