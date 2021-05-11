@@ -57,7 +57,6 @@ export default function NavBar() {
         {/* )} */}
         {/* </Measure> */}
 
-
         <div className="flex justify-between py-4 px-8 align-bottom md:px-32 md:py-16">
             <div>
                 <Image
