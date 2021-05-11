@@ -4,10 +4,10 @@ export default function Layout({ children }) {
     return <div>
         <NavBar />
 
-        <div className="px-8 lg:px-36">
+        <div className="px-8 md:px-20">
 
             {/* Spacer */}
-            <div className="py-8"/>
+            <div className="py-20"/>
 
             {children}
         </div>
