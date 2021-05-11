@@ -28,7 +28,7 @@ export default function NavBar() {
     const router = useRouter();
 
     const [menuOpen, setMenuOpen] = useState(false)
-    const [{ width, height }, setDimensions] = useState({ width: 0, height: 290 })
+    const [{ width, height }, setDimensions] = useState({ width: 0, height: 100 })
 
     const menuVariants = {
         open: { y: (width > 640 ? -height : 0) },
@@ -46,7 +46,7 @@ export default function NavBar() {
             onResize={contentRect => { setDimensions(contentRect.bounds) }}> */}
 
         {/* {({ measureRef }) => ( !!!ref={measureRef}!!! */}
-        <div  className="grid grid-cols-1 gap-y-6 p-12 bg-gray-100">
+        <div className="grid grid-cols-1 gap-y-6 p-12 bg-gray-100">
             {pages.map(page => (
                 <NavBarButton
                     destination={page}
