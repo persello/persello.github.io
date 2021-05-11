@@ -1,5 +1,4 @@
 import NavBarButton, { NavBarButtonDestination } from './navbarbutton'
-import NavBarText from './navbartext'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -28,7 +27,7 @@ export default function NavBar() {
     const router = useRouter();
 
     const [menuOpen, setMenuOpen] = useState(false)
-    const [{ width, height }, setDimensions] = useState({ width: 0, height: 290 })
+    const [{ width, height }, setDimensions] = useState({ width: 0, height: 250 })
 
     const menuVariants = {
         open: { y: (width > 640 ? -height : 0) },
@@ -43,7 +42,9 @@ export default function NavBar() {
 
         <Measure
             bounds
-            onResize={contentRect => { setDimensions(contentRect.bounds) }}>
+            onResize={contentRect => {
+                setDimensions(contentRect.bounds)
+            }}>
 
             {({ measureRef }) => (
                 <div ref={measureRef} className="grid grid-cols-1 gap-y-6 p-12 bg-gray-100">
@@ -56,7 +57,6 @@ export default function NavBar() {
                 </div>
             )}
         </Measure>
-
 
         <div className="flex justify-between py-4 px-8 align-bottom md:px-32 md:py-16">
             <div>
