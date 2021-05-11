@@ -45,16 +45,16 @@ export default function NavBar() {
             bounds
             onResize={contentRect => { setDimensions(contentRect.bounds) }}> */}
 
-            {({ measureRef }) => (
-                <div ref={measureRef} className="grid grid-cols-1 gap-y-6 p-12 bg-gray-100">
-                    {pages.map(page => (
-                        <NavBarButton
-                            destination={page}
-                            current={router.pathname == page.path}
-                        />
-                    ))}
-                </div>
-            )}
+        {/* {({ measureRef }) => ( !!!ref={measureRef}!!! */}
+        <div  className="grid grid-cols-1 gap-y-6 p-12 bg-gray-100">
+            {pages.map(page => (
+                <NavBarButton
+                    destination={page}
+                    current={router.pathname == page.path}
+                />
+            ))}
+        </div>
+        {/* )} */}
         {/* </Measure> */}
 
 
