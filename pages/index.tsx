@@ -1,6 +1,6 @@
-import NavBar from '../components/navbar'
-import Layout from '../components/layout'
-import NorminalHero from '../components/norminal'
+import NavBar from '../components/generic/navbar/navbar'
+import Layout from '../components/generic/layout'
+import NorminalHero from '../components/hero/norminal'
 
 export default function IndexPage() {
   return (
