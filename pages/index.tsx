@@ -5,7 +5,9 @@ import NorminalHero from '../components/hero/norminal'
 export default function IndexPage() {
   return (
     <Layout>
-      <NorminalHero/>
+      <div className="p-4">
+        <NorminalHero />
+      </div>
     </Layout>
   )
 }
