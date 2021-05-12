@@ -27,6 +27,8 @@ export default function NavBar() {
     const router = useRouter();
 
     const [menuOpen, setMenuOpen] = useState(false)
+    const [menuHidden, setMenuHidden] = useState(true)
+    const [barOpaque, setBarOpaque] = useState(false)
     const [{ width, height }, setDimensions] = useState({ width: 0, height: 250 })
 
     const menuVariants = {
@@ -38,6 +40,18 @@ export default function NavBar() {
         animate={menuOpen ? "open" : "closed"}
         variants={menuVariants}
         transition={{ ease: "anticipate", duration: (width > 640 ? 0 : 0.3) }}
+        onAnimationComplete={() => {
+            if (!menuOpen) {
+                setMenuHidden(true)
+                setBarOpaque(false)
+            }
+        }}
+        onAnimationStart={() => {
+            if (menuOpen) {
+                setMenuHidden(false)
+                setBarOpaque(true)
+            }
+        }}
         initial="closed" >
 
         <Measure
@@ -47,7 +61,7 @@ export default function NavBar() {
             }}>
 
             {({ measureRef }) => (
-                <div ref={measureRef} className="grid grid-cols-1 gap-y-6 p-12 bg-gray-100">
+                <div ref={measureRef} className={`grid grid-cols-1 gap-y-6 p-12 bg-gray-100 ${menuHidden ? "invisible" : ""}`}>
                     {pages.map(page => (
                         <NavBarButton
                             destination={page}
@@ -58,14 +72,12 @@ export default function NavBar() {
             )}
         </Measure>
 
-        <div className="flex justify-between py-4 px-8 align-bottom md:px-32 md:py-16">
-            <div>
+        <div className={`flex justify-between py-4 px-8 md:px-32 md:py-16 ${barOpaque ? "bg-white" : "bg-transparent"}`}>
                 <Image
                     width={48}
                     height={48}
                     src="/safari-pinned-tab.svg"
                 />
-            </div>
 
             <div className="flex gap-x-6 invisible sm:visible">
                 {pages.map(page => (
