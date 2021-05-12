@@ -3,22 +3,22 @@ import Measure from 'react-measure'
 import { useState, useEffect } from 'react'
 
 export default function Layout({ children }) {
-    const [overScrollOffset, setOverScrollOffset] = useState(false)
+    const [underScrollOffset, setUnderScrollOffset] = useState(true)
 
     var internalMeasure
 
     useEffect(() => {
         setInterval(() => {
-            if (overScrollOffset && window.scrollY > 60) {
-                setOverScrollOffset(false)
-            } else if (!overScrollOffset && window.scrollY < 50) {
-                setOverScrollOffset(true)
+            if (underScrollOffset && window.scrollY > 60) {
+                setUnderScrollOffset(false)
+            } else if (!underScrollOffset && window.scrollY < 50) {
+                setUnderScrollOffset(true)
             }
         }, 100)
     })
 
     return <div>
-        <NavBar isHeaderMode={overScrollOffset} />
+        <NavBar isHeaderMode={underScrollOffset} />
 
         <div className="px-8 md:px-20">
 
