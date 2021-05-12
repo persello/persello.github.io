@@ -26,7 +26,5 @@ export default function NorminalHero() {
         <div className="visible sm:hidden">
             <GitHubCard repo="persello/norminal" />
         </div>
-
-
     </div>
 }

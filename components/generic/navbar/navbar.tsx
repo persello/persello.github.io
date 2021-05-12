@@ -23,7 +23,7 @@ const pages: Array<NavBarButtonDestination> = [
     },
 ]
 
-export default function NavBar() {
+export default function NavBar({ isHeaderMode }) {
     const router = useRouter();
 
     const [menuOpen, setMenuOpen] = useState(false)
@@ -34,6 +34,21 @@ export default function NavBar() {
     const menuVariants = {
         open: { y: (width > 640 ? -height : 0) },
         closed: { y: -height }
+    }
+
+    const logoVariants = {
+        header: {},
+        scrolling: (width > 768) ? { x: -115, rotate: 90 } : {}
+    }
+
+    const lateralBarVariants = {
+        header: { x: -150, y: 80, rotate: 90 },
+        scrolling: (width > 768) ? { x: -90, y: 80, rotate: 90 } : { x: -150, y: 80, rotate: 90 }
+    }
+
+    const normalBarVariants = {
+        header: {},
+        scrolling: (width > 768) ? { x: 0, y: -120 } : {}
     }
 
     return <motion.div className="fixed w-full z-50"
@@ -64,6 +79,7 @@ export default function NavBar() {
                 <div ref={measureRef} className={`grid grid-cols-1 gap-y-6 p-12 bg-gray-100 ${menuHidden ? "invisible" : ""}`}>
                     {pages.map(page => (
                         <NavBarButton
+                            key={page.path}
                             destination={page}
                             current={router.pathname == page.path}
                         />
@@ -72,20 +88,31 @@ export default function NavBar() {
             )}
         </Measure>
 
-        <div className={`flex justify-between py-4 px-8 md:px-32 md:py-16 ${barOpaque ? "bg-white" : "bg-transparent"}`}>
+        <div className={`flex justify-between pt-4 pb-4 px-8 md:px-32 md:py-16 items-center ${(barOpaque || (!isHeaderMode && width < 768)) ? "bg-white shadow-sm" : "bg-transparent"}`}>
+            <motion.div variants={logoVariants}
+                animate={isHeaderMode ? "header" : "scrolling"}
+                initial="header"
+                className="pt-2">
                 <Image
                     width={48}
                     height={48}
                     src="/safari-pinned-tab.svg"
                 />
+            </motion.div>
 
-            <div className="flex gap-x-6 invisible sm:visible">
-                {pages.map(page => (
-                    <NavBarButton
-                        destination={page}
-                        current={router.pathname == page.path}
-                    />
-                ))}
+            <div>
+                <motion.div className="flex gap-x-6 invisible sm:visible"
+                    variants={normalBarVariants}
+                    animate={isHeaderMode ? "header" : "scrolling"}
+                    initial="header">
+                    {pages.map(page => (
+                        <NavBarButton
+                            key={page.path}
+                            destination={page}
+                            current={router.pathname == page.path}
+                        />
+                    ))}
+                </motion.div>
             </div>
 
             <button className="visible sm:hidden" onClick={() => setMenuOpen(!menuOpen)}>
@@ -94,6 +121,19 @@ export default function NavBar() {
                 </svg>
             </button>
         </div>
+
+        <motion.div className="flex absolute gap-x-6 invisible sm:visible"
+            variants={lateralBarVariants}
+            animate={isHeaderMode ? "header" : "scrolling"}
+            initial="header">
+            {pages.map(page => (
+                <NavBarButton
+                    key={page.path}
+                    destination={page}
+                    current={router.pathname == page.path}
+                />
+            ))}
+        </motion.div>
     </motion.div >
 }
 

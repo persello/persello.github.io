@@ -9,6 +9,21 @@ export default function IndexPage() {
       <div className="p-4">
         <NorminalHero />
         <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
+        <UnderConstruction />
       </div>
     </Layout>
   )
