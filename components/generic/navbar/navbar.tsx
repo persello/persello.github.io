@@ -34,7 +34,7 @@ export default function NavBar() {
         closed: { y: -height }
     }
 
-    return <motion.div className="fixed w-full bg-white"
+    return <motion.div className="fixed w-full z-50"
         animate={menuOpen ? "open" : "closed"}
         variants={menuVariants}
         transition={{ ease: "anticipate", duration: (width > 640 ? 0 : 0.3) }}

@@ -1,4 +1,4 @@
-import NavBar from "./navbar";
+import NavBar from "./navbar/navbar";
 
 export default function Layout({ children }) {
     return <div>
@@ -7,7 +7,7 @@ export default function Layout({ children }) {
         <div className="px-8 md:px-20">
 
             {/* Spacer */}
-            <div className="py-20"/>
+            <div className="py-24"/>
 
             {children}
         </div>
