@@ -20,7 +20,7 @@ export default function Layout({ children }) {
     return <div>
         <NavBar isHeaderMode={underScrollOffset} />
 
-        <div className="px-8 md:px-20">
+        <div className="px-8 md:px-24 xl:px-36">
 
             {/* Spacer */}
             <div className="py-24" />
