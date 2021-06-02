@@ -5,8 +5,12 @@ export default function GitHubCard({ repo }) {
     const fetcher = (args) => fetch(args).then(res => res.json())
     const { data, error } = useSWR(`https://api.github.com/repos/${repo}`, fetcher)
 
-    if (error) return <div>Error</div>
-    if (!data) return <div>Loading...</div>
+    if (error) return <div>
+        {/* Error */}
+    </div>
+    if (!data) return <div>
+        {/* Loading */}
+    </div>
 
     return <div className="flex flex-col bg-gray-50 rounded-2xl shadow-inner my-8 sm:max-w-sm">
         <div className="px-8 py-6 divide-y">
