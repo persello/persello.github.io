@@ -1,1 +1,3 @@
-export {}
+export class Theme {
+    static readonly accentColor = ""
+}

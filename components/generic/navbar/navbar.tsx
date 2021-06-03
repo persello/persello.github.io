@@ -38,7 +38,7 @@ export default function NavBar({ isHeaderMode }) {
 
     const logoVariants = {
         header: {},
-        scrolling: (width > 768) ? { x: -115, rotate: 90 } : {}
+        scrolling: (width > 768) ? { x: -105, rotate: 90 } : {}
     }
 
     const lateralBarVariants = {
@@ -76,7 +76,7 @@ export default function NavBar({ isHeaderMode }) {
             }}>
 
             {({ measureRef }) => (
-                <div ref={measureRef} className={`grid grid-cols-1 gap-y-6 p-12 bg-gray-100 ${menuHidden ? "invisible" : ""}`}>
+                <div ref={measureRef} className={`grid grid-cols-1 gap-y-6 p-12 bg-gray-100 dark:bg-gray-800 ${menuHidden ? "invisible" : ""}`}>
                     {pages.map(page => (
                         <NavBarButton
                             key={page.path}
@@ -88,16 +88,48 @@ export default function NavBar({ isHeaderMode }) {
             )}
         </Measure>
 
-        <div className={`flex justify-between pt-4 pb-4 px-8 md:px-32 md:py-16 items-center ${(barOpaque || (!isHeaderMode && width < 768)) ? "bg-white shadow-sm" : "bg-transparent"}`}>
+        <div className={`flex justify-between pt-4 pb-4 px-8 md:px-32 md:py-16 items-center ${(barOpaque || (!isHeaderMode && width < 768)) ? "bg-white dark:bg-gray-900 shadow-sm" : "bg-transparent"}`}>
             <motion.div variants={logoVariants}
                 animate={isHeaderMode ? "header" : "scrolling"}
                 initial="header"
                 className="pt-2">
-                <Image
-                    width={48}
-                    height={48}
-                    src="/safari-pinned-tab.svg"
-                />
+                <div>
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        className="w-10 h-10 dark:text-white fill-current"
+                        viewBox="0 0 512.000000 512.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                            stroke="none">
+                            <path d="M1260 4550 c-120 -33 -180 -76 -301 -219 -22 -25 -34 -31 -66 -31
+                                     -22 0 -64 -7 -94 -16 -184 -54 -312 -191 -366 -394 -25 -91 -24 -314 0 -430
+                                     101 -476 438 -964 857 -1241 47 -31 228 -139 403 -239 l317 -183 0 -454 c0
+                                     -508 -2 -491 72 -532 23 -14 135 -78 247 -143 121 -70 215 -118 231 -118 16 0
+                                     110 49 234 120 114 66 225 129 247 140 70 36 69 25 69 533 l0 455 163 92 c89
+                                     52 165 95 168 96 3 2 46 -43 94 -99 142 -165 149 -168 248 -117 l58 31 23 -28
+                                     c13 -15 75 -86 138 -158 154 -176 123 -176 437 5 135 78 250 149 257 158 24
+                                     30 16 76 -18 120 -18 22 -141 165 -274 319 l-241 279 80 94 c216 257 375 566
+                                     439 851 29 135 32 350 5 449 -54 203 -182 340 -366 394 -30 9 -72 16 -94 16
+                                     -32 0 -44 6 -66 31 -124 147 -182 188 -311 220 -166 42 -363 9 -570 -95 -58
+                                     -29 -242 -132 -410 -229 -167 -98 -307 -177 -310 -177 -3 0 -143 79 -310 177
+                                     -503 291 -596 330 -805 339 -89 3 -124 0 -185 -16z m316 -181 c109 -28 205
+                                     -77 614 -314 195 -113 362 -205 370 -205 8 0 175 92 370 205 414 240 505 286
+                                     619 316 160 41 326 14 400 -65 l22 -24 -68 -21 c-105 -32 -237 -102 -803 -431
+                                     -289 -167 -532 -304 -540 -304 -8 0 -267 145 -575 324 -564 326 -675 385 -780
+                                     415 -55 16 -56 17 -39 36 76 84 242 112 410 68z m-446 -267 c92 -24 245 -104
+                                     715 -376 226 -131 458 -266 517 -299 l108 -62 0 -1282 c0 -706 -3 -1283 -7
+                                     -1283 -3 0 -66 35 -140 77 l-133 77 0 464 0 463 -22 22 c-13 12 -151 96 -308
+                                     186 -394 227 -474 276 -556 337 -510 384 -841 1125 -670 1499 27 59 82 125
+                                     130 155 84 51 221 60 366 22z m3172 3 c27 -9 70 -37 98 -62 180 -162 174 -514
+                                     -15 -908 -95 -197 -178 -318 -352 -513 -64 -71 -83 -99 -83 -122 0 -23 49 -86
+                                     265 -337 145 -169 261 -311 256 -316 -4 -4 -70 -44 -146 -88 -135 -78 -139
+                                     -79 -157 -61 -10 10 -128 144 -261 298 -227 262 -245 279 -279 282 -31 3 -62
+                                     -12 -195 -89 -87 -50 -225 -129 -308 -176 -82 -47 -160 -96 -172 -110 l-23
+                                     -24 0 -462 0 -463 -133 -77 c-74 -42 -137 -77 -140 -77 -4 0 -7 577 -7 1283
+                                     l0 1282 108 62 c59 33 292 168 517 298 493 285 589 337 679 366 131 42 253 47
+                                     348 14z"/>
+                        </g>
+                    </svg>
+                </div>
             </motion.div>
 
             <div>
@@ -116,7 +148,7 @@ export default function NavBar({ isHeaderMode }) {
             </div>
 
             <button className="visible sm:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 stroke-current dark:text-white" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>

@@ -8,7 +8,7 @@ import Button from "../button"
 export default function NorminalHero() {
     return <div className="flex flex-col sm:flex-row">
         <div className="sm:w-3/5 sm:pr-8">
-            <div className="flex flex-col items-">
+            <div className="flex flex-col dark:text-gray-100">
                 <h1 className="font-black text-6xl xl:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-red-400 to-yellow-200">Norminal</h1>
                 <h1 className="absolute filter blur-3xl font-black text-6xl xl:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-red-400 to-yellow-200">Norminal</h1>
                 <p className="font-mono leading-loose py-6">

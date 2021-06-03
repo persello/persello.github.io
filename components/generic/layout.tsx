@@ -17,7 +17,8 @@ export default function Layout({ children }) {
         }, 100)
     })
 
-    return <div>
+    return <div className="dark:bg-gray-900">
+        
         <NavBar isHeaderMode={underScrollOffset} />
 
         <div className="px-8 md:px-24 xl:px-36">
