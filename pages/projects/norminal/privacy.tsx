@@ -2,7 +2,7 @@ import Layout from "../../../components/generic/layout"
 
 export default function IndexPage() {
     return (
-        <Layout>
+        <Layout title="Norminal Privacy Policy">
             <strong>Privacy Policy</strong>
             <p>
                 Riccardo Persello built the Norminal app as
