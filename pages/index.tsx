@@ -5,7 +5,7 @@ import UnderConstruction from '../components/generic/underconstruction'
 
 export default function IndexPage() {
   return (
-    <Layout>
+    <Layout title="Riccardo Persello">
       <div className="p-4">
         <NorminalHero />
         <UnderConstruction />

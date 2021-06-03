@@ -4,7 +4,7 @@ import UnderConstruction from '../../components/generic/underconstruction'
 
 export default function ProjectsPage() {
   return (
-    <Layout>
+    <Layout title="Projects">
       <UnderConstruction />
     </Layout>
   )

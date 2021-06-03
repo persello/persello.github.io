@@ -4,7 +4,7 @@ import UnderConstruction from '../components/generic/underconstruction'
 
 export default function ContactPage() {
   return (
-    <Layout>
+    <Layout title="Contact">
       <UnderConstruction />
     </Layout>
   )

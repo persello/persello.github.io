@@ -2,7 +2,7 @@ import NavBar from "./navbar/navbar";
 import Measure from 'react-measure'
 import { useState, useEffect } from 'react'
 
-export default function Layout({ children }) {
+export default function Layout({ children, title }) {
     const [underScrollOffset, setUnderScrollOffset] = useState(true)
 
     var internalMeasure
@@ -17,16 +17,23 @@ export default function Layout({ children }) {
         }, 100)
     })
 
-    return <div className="dark:bg-gray-900">
-        
-        <NavBar isHeaderMode={underScrollOffset} />
+    return <html>
+        <head>
+            <title>{title}</title>
+        </head>
+        <body className="dark:bg-gray-900">
+            <div>
 
-        <div className="px-8 md:px-24 xl:px-36">
+                <NavBar isHeaderMode={underScrollOffset} />
 
-            {/* Spacer */}
-            <div className="py-24" />
+                <div className="px-8 md:px-24 xl:px-36">
 
-            {children}
-        </div>
-    </div>
+                    {/* Spacer */}
+                    <div className="py-24" />
+
+                    {children}
+                </div>
+            </div>
+        </body>
+    </html>
 }

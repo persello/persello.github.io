@@ -2,7 +2,7 @@ import Layout from "../../../components/generic/layout"
 
 export default function IndexPage() {
   return (
-    <Layout>
+    <Layout title="Norminal">
       <div className="text-5xl sm:text-7xl font-extrabold">
         Norminal
       </div>
