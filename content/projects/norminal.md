@@ -1,4 +1,4 @@
-+++
-title = "Norminal"
-description = "A SpaceX launch tracker for iOS."
-+++
+---
+title: "Norminal"
+draft: true
+---

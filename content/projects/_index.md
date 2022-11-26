@@ -1,5 +1,5 @@
-+++
-title = "Projects"
-sort_by = "title"
-template = "cards.html"
-+++
+---
+title: "Projects"
+sort_by: "title"
+template: "cards.html"
+---
