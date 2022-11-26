@@ -12,10 +12,6 @@ build_search_index = false
 theme = "apollo"
 
 taxonomies = [
-    { name = "director", feed = true},
-    { name = "genres", feed = true},
-    { name = "awards", feed = true},
-    { name = "release-year", feed = true},
     { name = "tags", feed = true},
 ]
 

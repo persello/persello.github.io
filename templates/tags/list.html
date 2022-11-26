@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block main_content %}
+    {{ post_macros::page_header(title="Tags") }}
+    {% set tags = get_taxonomy(kind="tags") %}
+    <div class="post-tags">
+            <ul class="tags">
+                {% for tag in tags.items %}
+                    <li><a href={{ tag.path | safe }}>{{ tag.name }}</a></li>
+                {% endfor %}
+            </ul>
+    </div>
+{% endblock main_content %}
