@@ -7,9 +7,17 @@ base_url = "https://persello.github.io"
 compile_sass = true
 
 # Whether to build a search index to be used later on by a JavaScript library
-build_search_index = true
+build_search_index = false
 
 theme = "apollo"
+
+taxonomies = [
+    { name = "director", feed = true},
+    { name = "genres", feed = true},
+    { name = "awards", feed = true},
+    { name = "release-year", feed = true},
+    { name = "tags", feed = true},
+]
 
 [markdown]
 # Whether to do syntax highlighting
@@ -23,14 +31,11 @@ favicon = ""
 mathjax = true
 theme = "auto"
 socials = [
-    { icon = "github", name = "GitHub", url = "https://github.com/persello" }
+    { icon = "github", name = "GitHub", url = "https://github.com/persello" },
 ]
 menu = [
     { name = "Articles", url = "/articles" },
     { name = "Projects", url = "/projects" },
     { name = "About", url = "/about" },
 ]
-stylesheets = [
-    "theme.css",
-    "plex.css"
-]
+stylesheets = ["theme.css", "tags.css"]
