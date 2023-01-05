@@ -1,0 +1,25 @@
+pre code[class*="language-typescript"]::before,
+pre code[class*="language-ts"]::before {
+  content: "ts";
+  background: #3178c6;
+  color: white;
+}
+
+pre code[class*="language-swift"]::before {
+  content: "swift";
+  background: #f05138;
+  color: white;
+}
+
+pre code[class*="language-python"]::before,
+pre code[class*="language-py"]::before {
+  content: "py";
+  background: #FFD43B;
+  color: #306998;
+}
+
+pre code[class*="language-vhdl"]::before {
+  content: "vhdl";
+  background: #ffffff;
+  color: #000000;
+}

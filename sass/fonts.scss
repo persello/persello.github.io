@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Jetbrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/JetbrainsMono/JetBrainsMono-Regular.ttf'), local('ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jetbrains Mono';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/JetbrainsMono/JetBrainsMono-ExtraBold.ttf'), local('ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jetbrains Mono';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/JetbrainsMono/JetBrainsMono-Italic.ttf'), local('ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jetbrains Mono';
+  font-style: italic;
+  font-weight: 900;
+  src: url('../fonts/JetbrainsMono/JetBrainsMono-ExtraBoldItalic.ttf'), local('ttf');
+  font-display: swap;
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf'), local('ttf');
+    font-display: swap;
+  }
