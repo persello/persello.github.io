@@ -7,20 +7,23 @@ My interests range from hardware design to software development: I like developi
 
 I am a fan of modern development tools and technologies, and I really enjoy seeing them applied to the embedded world: all my recent firmware projects are written in Rust, without depending on any special toolchain or development environment. Why should embedded development be any different from the rest of the software world?
 
-In my free time, I develop apps for Apple platforms, in particular with SwiftUI, although I'd really like to learn more about AppKit, UIKit and Objective-C.
+In my free time, I develop apps for Apple platforms, in particular with SwiftUI and UIKit, although I'd really like to learn more about AppKit and Objective-C.
 
 Even if I do some web development, I don't really like it: I prefer to use native technologies whenever it makes sense.
 
 ## Education
 
-- ***University of Udine*** - Bachelor's degree in Electronics Engineering - Current
+- ***University of Udine*** - Master's degree in Electronics Engineering - Current
+- ***University of Udine*** - Bachelor's degree in Electronics Engineering - 2023
 - ***Istituto Tecnico Industriale "A. Malignani"*** - High school diploma in Electronics - 2019
 
 ## Work and team experience
 
 - ***Internship*** at [DM Elektron](http://www.dmelektron.com/): Component database migration.
 - ***Internship*** at [DM Elektron](http://www.dmelektron.com/): Hardware debugging and testing.
-- ***2021/2022 member*** of [UNIUD E-Racing team](https://formulasae.uniud.it/): Head of Electronics department.
+- ***2021/2022 member*** of [UNIUD E-Racing Team](https://formulasae.uniud.it/): Head of Electronics department.
+- ***2022/2023 member*** of [UNIUD E-Racing Team](https://formulasae.uniud.it/): Firmware developer.
+- ***2023/2024 member*** of [UNIUD E-Racing Team](https://formulasae.uniud.it/): Firmware developer.
 
 ## Awards
 
@@ -32,6 +35,11 @@ Even if I do some web development, I don't really like it: I prefer to use nativ
 
 - ***Email*** [riccardo.persello@icloud.com](mailto:riccardo.persello@icloud.com)
 - ***GitHub*** [persello](https://github.com/persello)
+- ***LinkedIn*** [riccardo-persello](https://www.linkedin.com/in/riccardo-persello/)
+
+---
+
+![Riccardo Persello](we-can-be-heroes.jpeg)
 
 ---
 

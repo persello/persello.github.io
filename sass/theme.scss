@@ -11,8 +11,8 @@ $accent: rgb(80, 133, 239);
 
   $bg-0: mix(white, $accent, 90%);
   --bg-0: #{$bg-0};
-  --bg-1: rgba(255, 255, 255, 25%);
-  --bg-2: rgba(255, 255, 255, 50%);
+  --bg-1: rgba(0, 0, 0, 5%);
+  --bg-2: rgba(0, 0, 0, 2%);
 }
 
 @media (prefers-color-scheme: dark) {
