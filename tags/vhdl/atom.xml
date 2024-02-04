@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Riccardo Persello - VHDL</title>
+    <link href="https://persello.github.io/tags/vhdl/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://persello.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-01-05T01:38:07+01:00</updated>
+    <id>https://persello.github.io/tags/vhdl/atom.xml</id>
+    <entry xml:lang="en">
+        <title>VHDL Game of Life</title>
+        <published>2023-01-05T01:38:07+01:00</published>
+        <updated>2023-01-05T01:38:07+01:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://persello.github.io/projects/vhdl-game-of-life/" type="text/html"/>
+        <id>https://persello.github.io/projects/vhdl-game-of-life/</id>
+        
+        <content type="html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;&#x2F;h2&gt;
+&lt;p&gt;An interactive web-app that drives a VHDL backend to simulate Conway&#x27;s Game of Life.&lt;&#x2F;p&gt;
+&lt;p&gt;This is the final project for the &amp;quot;Embedded Systems&amp;quot; course at the University of Udine.
+It demostrates various aspects of the course, including:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;VHDL&lt;&#x2F;li&gt;
+&lt;li&gt;Object-oriented programming&lt;&#x2F;li&gt;
+&lt;li&gt;Containerisation&lt;&#x2F;li&gt;
+&lt;li&gt;Unit testing&lt;&#x2F;li&gt;
+&lt;li&gt;Shell scripting&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;persello.github.io&#x2F;projects&#x2F;vhdl-game-of-life&#x2F;screenshot.png&quot; alt=&quot;Screenshot of the frontend&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;&#x2F;h2&gt;
+&lt;p&gt;The project is made of two Docker containers, one for the frontend and one for the backend.
+The frontend is a Svelte app, while the backend is a Python script that runs a VHDL simulation.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;communication&quot;&gt;Communication&lt;&#x2F;h3&gt;
+&lt;p&gt;The frontend communicates with the backend via a simple REST API.
+The backend exposes three endpoints:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;POST &#x2F;step&lt;&#x2F;code&gt;: runs a single step of the simulation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;GET&#x2F;POST &#x2F;state&lt;&#x2F;code&gt;: returns&#x2F;sets the current state of the simulation (matrix of boolean values).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;GET &#x2F;board-size&lt;&#x2F;code&gt;: returns the size of the simulation board (tuple of integers).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;frontend&quot;&gt;Frontend&lt;&#x2F;h3&gt;
+&lt;p&gt;The frontend is a single-page Svelte app that uses the IBM Carbon Design System. It is built with the &lt;code&gt;carbon-components-svelte&lt;&#x2F;code&gt; package.
+The board shown in the frontend is sized dynamically, depending on the size of the board defined in the VHDL code.&lt;&#x2F;p&gt;
+&lt;p&gt;This is a good example of modularisation: the frontend is completely independent from the backend, and it can be used with any board size. In fact, for changing the board size, you only need to change the VHDL code, and the frontend will automatically adapt.&lt;&#x2F;p&gt;
+&lt;p&gt;The frontend&#x27;s requests are made through a generated TypeScript client, which comes from the OpenAPI specification provided by the backend.
+This way, the types of the requests and responses are automatically managed, eliminating the risk of human errors. Request functions will accept and return only the correct types, and the IDE will provide autocompletion.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, setting the state of the board is done with the following function:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;typescript&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-typescript &quot;&gt;&lt;code class=&quot;language-typescript&quot; data-lang=&quot;typescript&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;userChangedWorld&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;world&lt;&#x2F;span&gt;&lt;span&gt;: boolean[][]) {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;board_state &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ServiceVHDLBackend&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;setBoardState&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;world&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ebcb8b;&quot;&gt;console&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;log&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;world&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The state is saved in a local variable, and passed to a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;persello&#x2F;game-of-life-vhdl&#x2F;blob&#x2F;master&#x2F;frontend&#x2F;src&#x2F;components&#x2F;world.svelte&quot;&gt;&lt;code&gt;world&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; component, which is responsible for rendering the board. This component is made of a grid of cells, which are bound to the state of their specific index. Each cell also receives a callback function, which is called when the user clicks on it.&lt;&#x2F;p&gt;
+&lt;p&gt;Last, there are a few buttons that allow the user to control the simulation: autoplay, step and erase.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;backend&quot;&gt;Backend&lt;&#x2F;h3&gt;
+&lt;p&gt;The backend runs a Python script which starts by running &lt;code&gt;make&lt;&#x2F;code&gt;, which starts an interactive GHDL session with undefined simulation time.&lt;&#x2F;p&gt;
+&lt;p&gt;In the meantime, the REST API is initialised. Starting the simulation takes a few seconds, so it will return errors until ready.
+The frontend will simply hide the board until GHDL becomes interactive.&lt;&#x2F;p&gt;
+&lt;p&gt;When the VHDL simulation outputs a ready signal, its controlling class will complete the initialisation.
+This class, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;persello&#x2F;game-of-life-vhdl&#x2F;blob&#x2F;master&#x2F;backend&#x2F;api&#x2F;VHDLBackend.py&quot;&gt;&lt;code&gt;VHDLBackend&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, exposes a clean Python interface to communicate with GHDL.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ebcb8b;&quot;&gt;VHDLBackend&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&amp;quot;&amp;quot;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    VHDL backend management class.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;get_board_size&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span&gt;) -&amp;gt; Tuple[int, int]:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ...
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;get_board_state&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span&gt;) -&amp;gt; List[List[bool]]:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ...
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;set_board_state&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;board_state&lt;&#x2F;span&gt;&lt;span&gt;: List[List[bool]]):
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ...
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;step&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span&gt;):
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ...
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Internally, it uses single-letter commands followed by some arguments, which can be easily parsed in the VHDL testbench.&lt;&#x2F;p&gt;
+&lt;p&gt;On the VDHL side, the code is organised in three different entities:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;persello&#x2F;game-of-life-vhdl&#x2F;blob&#x2F;master&#x2F;backend&#x2F;entities&#x2F;ones_counter.vhdl&quot;&gt;&lt;code&gt;ones_counter&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; entity, which counts the number of ones in a given vector.&lt;&#x2F;li&gt;
+&lt;li&gt;a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;persello&#x2F;game-of-life-vhdl&#x2F;blob&#x2F;master&#x2F;backend&#x2F;entities&#x2F;cell.vhdl&quot;&gt;&lt;code&gt;cell&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; entity, which represents a single cell of the board.&lt;&#x2F;li&gt;
+&lt;li&gt;a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;persello&#x2F;game-of-life-vhdl&#x2F;blob&#x2F;master&#x2F;backend&#x2F;entities&#x2F;world.vhdl&quot;&gt;&lt;code&gt;world&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; entity, which uses two nested generate loops to create a matrix of cells.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Each of these entities has a testbench that defines some test cases. These tests are run by &lt;a href=&quot;https:&#x2F;&#x2F;vunit.github.io&#x2F;&quot;&gt;VUnit&lt;&#x2F;a&gt;, which is a Python library for unit testing VHDL code.&lt;&#x2F;p&gt;
+&lt;p&gt;There is a fourth, special testbench, that is the one which is actually run by the Python script, called &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;persello&#x2F;game-of-life-vhdl&#x2F;blob&#x2F;master&#x2F;backend&#x2F;entities&#x2F;world_tb_interactive.vhdl&quot;&gt;&lt;code&gt;world_tb_interactive&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;. This testbench runs an I&#x2F;O loop that receives commands from the standard input. The commands are dispatched by looking at the first character:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;s&lt;&#x2F;code&gt;: runs a single step of the simulation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;l&lt;&#x2F;code&gt;: loads a new board state.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;p&lt;&#x2F;code&gt;: prints the current board state.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;&#x2F;code&gt;: returns the x-size of the board.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;y&lt;&#x2F;code&gt;: returns the y-size of the board.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The &lt;code&gt;l&lt;&#x2F;code&gt; and &lt;code&gt;p&lt;&#x2F;code&gt; commands expect (or output) data after a newline, as a sequence of ones and zeros representing the board state.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;docker-compose&quot;&gt;Docker Compose&lt;&#x2F;h2&gt;
+&lt;p&gt;The project uses Docker Compose, which simplifies the orchestration of multiple containers. The &lt;code&gt;docker-compose.yml&lt;&#x2F;code&gt; file is as follows:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-yaml &quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;version&lt;&#x2F;span&gt;&lt;span&gt;: &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;3.8&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;services&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;frontend&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;build&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.&#x2F;frontend
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ports&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;      - &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;80:3000&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;      - &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;24678:24678&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;depends_on&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;      - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;backend
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;restart&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;always
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;backend&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;build&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.&#x2F;backend
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ports&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;      - &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;8000:8000&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hostname&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;backend
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;frontend&lt;&#x2F;code&gt; builds and runs the Svelte frontend with Node 16.
+The &lt;code&gt;backend&lt;&#x2F;code&gt; (which derives from the &lt;code&gt;ghdl&#x2F;vunit:llvm&lt;&#x2F;code&gt; image) installs the required Python packages and starts the Python script with Uvicorn.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;This project is available on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;persello&#x2F;game-of-life-vhdl&quot;&gt;GitHub&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
