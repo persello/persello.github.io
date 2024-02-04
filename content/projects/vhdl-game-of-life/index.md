@@ -90,7 +90,7 @@ class VHDLBackend:
 
 ```
 
-Internally, it uses single-letter commands followed by some arguments, which can bea easily parsed in the VHDL testbench.
+Internally, it uses single-letter commands followed by some arguments, which can be easily parsed in the VHDL testbench.
 
 On the VDHL side, the code is organised in three different entities:
 
