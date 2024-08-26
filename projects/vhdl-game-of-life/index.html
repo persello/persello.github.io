@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    
+    
+    <title>
+        VHDL Game of Life
+    </title>
+    
+
+    
+    
+
+    
+    
+        <link href=https://persello.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+
+    
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Riccardo Persello" href="https://persello.github.io/atom.xml">
+
+    
+    
+    
+        <link rel="stylesheet" type="text/css" href="https://persello.github.io/theme/light.css"/>
+        <link rel="stylesheet" type="text/css" href="https://persello.github.io/theme/dark.css" media="(prefers-color-scheme: dark)"/>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://persello.github.io/main.css />
+
+
+    
+        
+            <link rel="stylesheet" href="https://persello.github.io/theme.css">
+        
+            <link rel="stylesheet" href="https://persello.github.io/tags.css">
+        
+            <link rel="stylesheet" href="https://persello.github.io/image.css">
+        
+            <link rel="stylesheet" href="https://persello.github.io/mermaid.css">
+        
+            <link rel="stylesheet" href="https://persello.github.io/footer.css">
+        
+            <link rel="stylesheet" href="https://persello.github.io/code.css">
+        
+    
+</head>
+
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;persello.github.io>Riccardo Persello</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;persello" class="social">
+                <img alt=GitHub src="/social_icons/github.svg">
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=&#x2F;posts style="margin-left: 0.7em">Posts</a>
+        
+            <a href=&#x2F;projects style="margin-left: 0.7em">Projects</a>
+        
+            <a href=&#x2F;about style="margin-left: 0.7em">About</a>
+        
+    </nav>
+</header>
+
+
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        VHDL Game of Life<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-01-05</time>
+                    
+
+                    
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <h2 id="overview">Overview</h2>
+<p>An interactive web-app that drives a VHDL backend to simulate Conway's Game of Life.</p>
+<p>This is the final project for the &quot;Embedded Systems&quot; course at the University of Udine.
+It demostrates various aspects of the course, including:</p>
+<ul>
+<li>VHDL</li>
+<li>Object-oriented programming</li>
+<li>Containerisation</li>
+<li>Unit testing</li>
+<li>Shell scripting</li>
+</ul>
+<p><img src="https://persello.github.io/projects/vhdl-game-of-life/screenshot.png" alt="Screenshot of the frontend" /></p>
+<h2 id="architecture">Architecture</h2>
+<p>The project is made of two Docker containers, one for the frontend and one for the backend.
+The frontend is a Svelte app, while the backend is a Python script that runs a VHDL simulation.</p>
+<h3 id="communication">Communication</h3>
+<p>The frontend communicates with the backend via a simple REST API.
+The backend exposes three endpoints:</p>
+<ul>
+<li><code>POST /step</code>: runs a single step of the simulation.</li>
+<li><code>GET/POST /state</code>: returns/sets the current state of the simulation (matrix of boolean values).</li>
+<li><code>GET /board-size</code>: returns the size of the simulation board (tuple of integers).</li>
+</ul>
+<h3 id="frontend">Frontend</h3>
+<p>The frontend is a single-page Svelte app that uses the IBM Carbon Design System. It is built with the <code>carbon-components-svelte</code> package.
+The board shown in the frontend is sized dynamically, depending on the size of the board defined in the VHDL code.</p>
+<p>This is a good example of modularisation: the frontend is completely independent from the backend, and it can be used with any board size. In fact, for changing the board size, you only need to change the VHDL code, and the frontend will automatically adapt.</p>
+<p>The frontend's requests are made through a generated TypeScript client, which comes from the OpenAPI specification provided by the backend.
+This way, the types of the requests and responses are automatically managed, eliminating the risk of human errors. Request functions will accept and return only the correct types, and the IDE will provide autocompletion.</p>
+<p>For example, setting the state of the board is done with the following function:</p>
+<pre data-lang="typescript" style="background-color:#2b303b;color:#c0c5ce;" class="language-typescript "><code class="language-typescript" data-lang="typescript"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">userChangedWorld</span><span>(</span><span style="color:#bf616a;">world</span><span>: boolean[][]) {
+</span><span>    </span><span style="color:#bf616a;">board_state </span><span>= </span><span style="color:#bf616a;">ServiceVHDLBackend</span><span>.</span><span style="color:#8fa1b3;">setBoardState</span><span>(</span><span style="color:#bf616a;">world</span><span>);
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">world</span><span>);
+</span><span>}
+</span></code></pre>
+<p>The state is saved in a local variable, and passed to a <a href="https://github.com/persello/game-of-life-vhdl/blob/master/frontend/src/components/world.svelte"><code>world</code></a> component, which is responsible for rendering the board. This component is made of a grid of cells, which are bound to the state of their specific index. Each cell also receives a callback function, which is called when the user clicks on it.</p>
+<p>Last, there are a few buttons that allow the user to control the simulation: autoplay, step and erase.</p>
+<h3 id="backend">Backend</h3>
+<p>The backend runs a Python script which starts by running <code>make</code>, which starts an interactive GHDL session with undefined simulation time.</p>
+<p>In the meantime, the REST API is initialised. Starting the simulation takes a few seconds, so it will return errors until ready.
+The frontend will simply hide the board until GHDL becomes interactive.</p>
+<p>When the VHDL simulation outputs a ready signal, its controlling class will complete the initialisation.
+This class, <a href="https://github.com/persello/game-of-life-vhdl/blob/master/backend/api/VHDLBackend.py"><code>VHDLBackend</code></a>, exposes a clean Python interface to communicate with GHDL.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">VHDLBackend</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#65737e;">&quot;&quot;&quot;
+</span><span style="color:#65737e;">    VHDL backend management class.
+</span><span style="color:#65737e;">    &quot;&quot;&quot;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">get_board_size</span><span>(</span><span style="color:#bf616a;">self</span><span>) -&gt; Tuple[int, int]:
+</span><span>        </span><span style="color:#65737e;"># ...
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">get_board_state</span><span>(</span><span style="color:#bf616a;">self</span><span>) -&gt; List[List[bool]]:
+</span><span>        </span><span style="color:#65737e;"># ...
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">set_board_state</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">board_state</span><span>: List[List[bool]]):
+</span><span>        </span><span style="color:#65737e;"># ...
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">step</span><span>(</span><span style="color:#bf616a;">self</span><span>):
+</span><span>        </span><span style="color:#65737e;"># ...
+</span><span>
+</span></code></pre>
+<p>Internally, it uses single-letter commands followed by some arguments, which can be easily parsed in the VHDL testbench.</p>
+<p>On the VDHL side, the code is organised in three different entities:</p>
+<ul>
+<li>a <a href="https://github.com/persello/game-of-life-vhdl/blob/master/backend/entities/ones_counter.vhdl"><code>ones_counter</code></a> entity, which counts the number of ones in a given vector.</li>
+<li>a <a href="https://github.com/persello/game-of-life-vhdl/blob/master/backend/entities/cell.vhdl"><code>cell</code></a> entity, which represents a single cell of the board.</li>
+<li>a <a href="https://github.com/persello/game-of-life-vhdl/blob/master/backend/entities/world.vhdl"><code>world</code></a> entity, which uses two nested generate loops to create a matrix of cells.</li>
+</ul>
+<p>Each of these entities has a testbench that defines some test cases. These tests are run by <a href="https://vunit.github.io/">VUnit</a>, which is a Python library for unit testing VHDL code.</p>
+<p>There is a fourth, special testbench, that is the one which is actually run by the Python script, called <a href="https://github.com/persello/game-of-life-vhdl/blob/master/backend/entities/world_tb_interactive.vhdl"><code>world_tb_interactive</code></a>. This testbench runs an I/O loop that receives commands from the standard input. The commands are dispatched by looking at the first character:</p>
+<ul>
+<li><code>s</code>: runs a single step of the simulation.</li>
+<li><code>l</code>: loads a new board state.</li>
+<li><code>p</code>: prints the current board state.</li>
+<li><code>x</code>: returns the x-size of the board.</li>
+<li><code>y</code>: returns the y-size of the board.</li>
+</ul>
+<p>The <code>l</code> and <code>p</code> commands expect (or output) data after a newline, as a sequence of ones and zeros representing the board state.</p>
+<h2 id="docker-compose">Docker Compose</h2>
+<p>The project uses Docker Compose, which simplifies the orchestration of multiple containers. The <code>docker-compose.yml</code> file is as follows:</p>
+<pre data-lang="yaml" style="background-color:#2b303b;color:#c0c5ce;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#bf616a;">version</span><span>: &#39;</span><span style="color:#a3be8c;">3.8</span><span>&#39;
+</span><span style="color:#bf616a;">services</span><span>:
+</span><span>  </span><span style="color:#bf616a;">frontend</span><span>:
+</span><span>    </span><span style="color:#bf616a;">build</span><span>: </span><span style="color:#a3be8c;">./frontend
+</span><span>    </span><span style="color:#bf616a;">ports</span><span>:
+</span><span>      - &quot;</span><span style="color:#a3be8c;">80:3000</span><span>&quot;
+</span><span>      - &quot;</span><span style="color:#a3be8c;">24678:24678</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">depends_on</span><span>:
+</span><span>      - </span><span style="color:#a3be8c;">backend
+</span><span>    </span><span style="color:#bf616a;">restart</span><span>: </span><span style="color:#a3be8c;">always
+</span><span>
+</span><span>  </span><span style="color:#bf616a;">backend</span><span>:
+</span><span>    </span><span style="color:#bf616a;">build</span><span>: </span><span style="color:#a3be8c;">./backend
+</span><span>    </span><span style="color:#bf616a;">ports</span><span>:
+</span><span>      - &quot;</span><span style="color:#a3be8c;">8000:8000</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">hostname</span><span>: </span><span style="color:#a3be8c;">backend
+</span></code></pre>
+<p>The <code>frontend</code> builds and runs the Svelte frontend with Node 16.
+The <code>backend</code> (which derives from the <code>ghdl/vunit:llvm</code> image) installs the required Python packages and starts the Python script with Uvicorn.</p>
+<hr />
+<p>This project is available on <a href="https://github.com/persello/game-of-life-vhdl">GitHub</a>.</p>
+
+        </section>
+
+        
+            <div class="post-tags">
+                <nav class="nav tags">
+                    <ul class="tags">
+                        
+                            <li><a href=https://persello.github.io/tags/carbon/>Carbon</a></li>
+                        
+                            <li><a href=https://persello.github.io/tags/docker/>Docker</a></li>
+                        
+                            <li><a href=https://persello.github.io/tags/python/>Python</a></li>
+                        
+                            <li><a href=https://persello.github.io/tags/svelte/>Svelte</a></li>
+                        
+                            <li><a href=https://persello.github.io/tags/university/>University</a></li>
+                        
+                            <li><a href=https://persello.github.io/tags/vhdl/>VHDL</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        
+
+    </article>
+</main>
+
+
+
+
+<footer>
+
+</footer>
+
+    </div>
+</body>
+
+</html>

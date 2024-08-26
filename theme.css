@@ -1,0 +1,1 @@
+:root{--text-0: #1c2f54;--text-1: #96b6f5;--primary-color: #5085ef;--hover-color: white;--bg-0: #eef3fd;--bg-1: rgba(0, 0, 0, 5%);--bg-2: rgba(0, 0, 0, 2%)}@media (prefers-color-scheme: dark){:root{--text-0: #eef3fd;--text-1: #c4d6fa;--primary-color: #5085ef;--hover-color: white;--bg-0: #080d18;--bg-1: rgba(255, 255, 255, 5%);--bg-2: rgba(255, 255, 255, 10%)}}
