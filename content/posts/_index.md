@@ -1,6 +1,5 @@
 ---
 paginate_by: 7
-path: "articles"
-title: "Articles"
+title: "Posts"
 sort_by: "update_date"
 ---

@@ -11,6 +11,8 @@ In my free time, I develop apps for Apple platforms, in particular with SwiftUI 
 
 Even if I do some web development, I don't really like it: I prefer to use native technologies whenever it makes sense.
 
+I might have started to actually like Python for _some_ reason...
+
 ## Education
 
 - ***University of Udine*** - Master's degree in Electronics Engineering - Current
@@ -24,6 +26,7 @@ Even if I do some web development, I don't really like it: I prefer to use nativ
 - ***2021/2022 member*** of [UNIUD E-Racing Team](https://formulasae.uniud.it/): Head of Electronics department.
 - ***2022/2023 member*** of [UNIUD E-Racing Team](https://formulasae.uniud.it/): Firmware developer.
 - ***2023/2024 member*** of [UNIUD E-Racing Team](https://formulasae.uniud.it/): Firmware developer.
+- ***Internship*** at [Apple Inc.](http://apple.com/): RF Systems Engineering intern.
 
 ## Awards
 
